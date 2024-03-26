@@ -50,17 +50,15 @@ struct node *search(struct node*root, int key){
         return NULL;
     }
     if(root->data==key){
-        return root->data;
+        return root;
     }
     else if(root->data > key){
         search(root->left, key);
     }
-    else if(root->data < key){
+    else{
         search(root->right, key);
     }
-    else{
-        printf("%d is  not found in this BST.");
-    }
+    
 }
 
 int main(){
@@ -85,11 +83,6 @@ int main(){
     r4->right=r6;
     r7->left=r8;
 
-    // Function calling to display elements of BST 
-    printf("Elements in BST : ");
-    inOrderDisplay(r);
-    printf("\n");
-
     // Function call to check tree is BST
     if(isBST(r)==1){
         printf("This is a BST");
@@ -97,9 +90,20 @@ int main(){
         printf("This is not a BST");
     }
 
+    // Function calling to display elements of BST 
+    printf("\nElements in BST : ");
+    inOrderDisplay(r);
+    printf("\n");
+
     // Function call for searchig element in BST
-    int i =search(r, 5);
-    printf("\n%d found in this BST.",i);
+    struct node* i =  search(r, 7);
+    if(i != NULL){
+        printf("\nElement %d found in this BST.",i->data);
+
+    }
+    else{
+        printf("\nElement %d is  not found in this BST.");
+    }
 
     return 0;
 }
